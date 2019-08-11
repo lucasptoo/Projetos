@@ -12,15 +12,14 @@
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <!-- <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard"> -->
-        <ul>
-          <li nzIcon="dashboard" nz-menu-item>
-            <a routerLink="/cadastro">Cadastro</a>
-          </li>
-          <li nzIcon="dashboard" nz-menu-item>
-            <a routerLink="/lista">Produtos</a>
-          </li>
-        </ul>
+      <li routerLink="/cadastro" nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Cadastro' : ''">
+        <i nz-icon nzType="diff" nzTheme="outline"></i> 
+        <span>Cadastro</span>
+      </li>
+      <li routerLink="/produtos" nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Produtos' : ''">
+        <i nz-icon nzType="unordered-list" nzTheme="outline"></i>
+        <span>Produtos</span>
+      </li>
     </ul>
   </nz-sider>
   <nz-layout>

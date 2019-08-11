@@ -7,8 +7,8 @@ import pt from '@angular/common/locales/pt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
-import { ListaComponent } from './pages/lista/lista.component';
 import { SharedModule } from './shared/shared.module';
+import { ProdutosComponent } from './pages/produtos/produtos.component';
 
 registerLocaleData(pt);
 
@@ -16,7 +16,7 @@ registerLocaleData(pt);
   declarations: [
     AppComponent,
     CadastroComponent,
-    ListaComponent
+    ProdutosComponent
   ],
   imports: [
     BrowserModule,
