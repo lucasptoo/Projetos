@@ -1,0 +1,102 @@
+<h1>Cadastro do produto</h1>
+
+<div [formGroup]="cadastroForm" >
+    <div nz-row nzGutter="16">
+        <div nz-col nzSpan="8">
+            <nz-form-item>
+                <nz-form-label>Nome do item</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="nomeItem" maxlength="50"/>
+                </nz-form-control>
+                    <div *ngIf="submitted && f.nomeItem.errors">
+                        <div *ngIf="f.nomeItem.errors.required" class="mensagem">Campo obrigatório!</div>
+                    </div>
+            </nz-form-item>
+        </div>
+
+        <div nz-col nzSpan="4">
+            <nz-form-item>
+                <nz-form-label>Unidade de medida</nz-form-label>
+                <nz-form-control>
+                    <nz-select formControlName="unidadeDeMedida" nzPlaceHolder="Selecione uma opção" nzShowSearch style="width: 200px;">
+                        <nz-option *ngFor="let unidade of unidadeMedida" [nzValue]="unidade.value" [nzLabel]="unidade.label"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+                    <div *ngIf="submitted && f.unidadeDeMedida.errors">
+                        <div *ngIf="f.unidadeDeMedida.errors.required" class="mensagem">Campo obrigatório!</div>
+                    </div>
+            </nz-form-item>
+        </div>
+    </div>
+
+    <div nz-row nzGutter="16">
+        <div nz-col nzSpan="4">
+            <nz-form-item>
+                <nz-form-label>Quantidade</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="quantidade" maxlength="50" />
+                </nz-form-control>
+                    <div *ngIf="submitted && f.quantidade.errors">
+                        <div *ngIf="f.quantidade.errors.required" class="mensagem">Campo obrigatório!</div>
+                    </div>
+            </nz-form-item>
+        </div>
+
+        <div nz-col nzSpan="4">
+            <nz-form-item>
+                <nz-form-label>Preço</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="preco" maxlength="50" />
+                </nz-form-control>
+                    <div *ngIf="submitted && f.preco.errors">
+                        <div *ngIf="f.preco.errors.required" class="mensagem">Campo obrigatório!</div>
+                    </div>
+            </nz-form-item>
+        </div>
+    </div>
+
+    <div nz-row nzGutter="16">
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label>Produto perecível</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="produtoPerecivel" maxlength="50" />
+                </nz-form-control>
+                    <div *ngIf="submitted && f.produtoPerecivel.errors">
+                        <div *ngIf="f.produtoPerecivel.errors.required" class="mensagem">Campo obrigatório!</div>
+                    </div>
+            </nz-form-item>
+        </div>
+    </div>
+
+    <div nz-row nzGutter="16">
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label>Data de validade</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="dataDeValidade" maxlength="50" />
+                </nz-form-control>
+                    <div *ngIf="submitted && f.dataDeValidade.errors">
+                        <div *ngIf="f.dataDeValidade.errors.required" class="mensagem">Campo obrigatório!</div>
+                    </div>
+            </nz-form-item>
+        </div>
+    </div>
+
+    <div nz-row nzGutter="16">
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label>Data de fabricação</nz-form-label>
+                <nz-form-control>
+                    <input nz-input formControlName="dataDeFabricacao" maxlength="50" />
+                </nz-form-control>
+                    <div *ngIf="submitted && f.dataDeFabricacao.errors">
+                        <div *ngIf="f.dataDeFabricacao.errors.required" class="mensagem">Campo obrigatório!</div>
+                    </div>
+            </nz-form-item>
+        </div>
+    </div>
+
+    <button nz-button nzType="primary" (click)="onSubmit()">Salvar</button>
+    <button nz-button nzType="default" (click)="onReset()">Cancelar</button>
+</div>
