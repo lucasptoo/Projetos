@@ -6,3 +6,12 @@ nz-form-label {
     color: black;
     font-size: 15px;
 }
+
+.btn-salvar {
+    margin-right: 10px;
+    width: 100px;
+}
+
+.btn-cancelar {
+    width: 100px;
+}

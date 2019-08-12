@@ -11,6 +11,7 @@ export class CadastroComponent implements OnInit {
 
   cadastroForm: FormGroup;
   submitted = false;
+  dateFormat = 'dd/MM/yyyy';
 
   public unidadeMedida = Object.keys(UnidadeMedida).map(key => {
     return { label: UnidadeMedida[key], value: key};
@@ -42,8 +43,17 @@ export class CadastroComponent implements OnInit {
     console.log('Item cadastrado' + JSON.stringify(this.cadastroForm.value));
   }
 
+  compareDates() {
+    if (this.f['dataDeValidade'].value < this.f['dataDeFabricacao'].value) {
+      console.log('Produto encontra-se vencido');
+    } else {
+      console.log('Produto com válidade certa');
+    }
+  }
+
+
   onReset() {
     this.submitted = false;
     this.cadastroForm.reset();
-}
+  }
 }
