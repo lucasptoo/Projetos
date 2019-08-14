@@ -5,15 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class LocalStorageService {
 
-  private keys = {
-    key: 'aux.teste',
-    key2: 'aux.teste2'
-  };
-
   constructor() { }
 
-  public set(obj: any) {
-    localStorage.setItem(this.keys.key, 'OBJETO');
+  public set(obj: any, key: string) {
+    localStorage.setItem(key, JSON.stringify(obj));
   }
 
   public get(key: string) {

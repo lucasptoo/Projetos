@@ -2,7 +2,7 @@
 
 <div [formGroup]="cadastroForm" >
     <div nz-row nzGutter="16">
-        <div nz-col nzSpan="8">
+        <div nz-col nzSpan="8" >
             <nz-form-item>
                 <nz-form-label>Nome do item</nz-form-label>
                 <nz-form-control>
@@ -34,7 +34,8 @@
             <nz-form-item>
                 <nz-form-label>Quantidade</nz-form-label>
                 <nz-form-control>
-                    <input nz-input formControlName="quantidade" maxlength="50" />
+                    <nz-input-number formControlName="quantidade" [nzStep]="stepUnidade"
+                    [nzFormatter]="formatterUnidade" [nzParser]="parserUnidade"></nz-input-number>
                 </nz-form-control>
                     <div *ngIf="submitted && f.quantidade.errors">
                         <div *ngIf="f.quantidade.errors.required" class="mensagem">Campo obrigatório!</div>
@@ -46,7 +47,7 @@
             <nz-form-item>
                 <nz-form-label>Preço</nz-form-label>
                 <nz-form-control>
-                    <input nz-input formControlName="preco" maxlength="50" />
+                    <nz-input-number formControlName="preco" [nzFormatter]="formatterReal" [nzParser]="parserReal"></nz-input-number>
                 </nz-form-control>
                     <div *ngIf="submitted && f.preco.errors">
                         <div *ngIf="f.preco.errors.required" class="mensagem">Campo obrigatório!</div>
@@ -59,9 +60,9 @@
         <div nz-col nzSpan="8">
             <nz-form-item>
                 <nz-form-label>Produto perecível</nz-form-label>
-                    <nz-radio-group formControlName="produtoPerecivel" [(ngModel)]="radioValue">
-                        <label nz-radio nzValue="Sim">Sim</label>
-                        <label nz-radio nzValue="Não">Não</label>
+                    <nz-radio-group formControlName="produtoPerecivel">
+                        <label nz-radio nzValue="true">Sim</label>
+                        <label nz-radio nzValue="false">Não</label>
                     </nz-radio-group>
                     <div *ngIf="submitted && f.produtoPerecivel.errors">
                         <div *ngIf="f.produtoPerecivel.errors.required" class="mensagem">Campo obrigatório!</div>
@@ -71,11 +72,11 @@
     </div>
 
     <div nz-row nzGutter="16">
-        <div nz-col nzSpan="3">
+        <div nz-col nzSpan="3" style="margin-right: 80px;">
             <nz-form-item>
                 <nz-form-label>Data de validade</nz-form-label>
                 <nz-form-control>
-                    <nz-date-picker formControlName="dataDeValidade" [nzFormat]="dateFormat"></nz-date-picker>
+                    <nz-date-picker formControlName="dataDeValidade" [nzFormat]="dateFormat" style="width: 150px;" ></nz-date-picker>
                 </nz-form-control>
                     <div *ngIf="submitted && f.dataDeValidade.errors">
                         <div *ngIf="f.dataDeValidade.errors.required" class="mensagem">Campo obrigatório!</div>
@@ -87,7 +88,7 @@
             <nz-form-item>
                 <nz-form-label>Data de fabricação</nz-form-label>
                 <nz-form-control>
-                        <nz-date-picker formControlName="dataDeFabricacao" [nzFormat]="dateFormat" (click)="compareDates()"></nz-date-picker>
+                        <nz-date-picker formControlName="dataDeFabricacao" [nzFormat]="dateFormat" style="width: 150px;"></nz-date-picker>
                 </nz-form-control>
                     <div *ngIf="submitted && f.dataDeFabricacao.errors">
                         <div *ngIf="f.dataDeFabricacao.errors.required" class="mensagem">Campo obrigatório!</div>
@@ -97,5 +98,5 @@
     </div>
 
     <button class="btn-salvar" nz-button nzType="primary" (click)="onSubmit()">Salvar</button>
-    <button class="btn-cancelar" nz-button nzType="default" (click)="onReset()">Cancelar</button>
+    <button class="btn-cancelar" nz-button nzType="default" (click)="onCancel()">Cancelar</button>
 </div>

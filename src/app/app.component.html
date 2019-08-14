@@ -6,13 +6,13 @@
             [(nzCollapsed)]="isCollapsed"
             [nzTrigger]="null">
     <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
+      <a href="" target="_blank">
         <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
         <h1>Desafio Front-end</h1>
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li routerLink="/cadastro" nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Cadastro' : ''">
+      <li [routerLink]="['/cadastro', 'new']" nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Cadastro' : ''">
         <i nz-icon nzType="diff" nzTheme="outline"></i> 
         <span>Cadastro</span>
       </li>

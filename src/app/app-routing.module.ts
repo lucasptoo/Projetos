@@ -4,8 +4,9 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
 
 const routes: Routes = [
-  { path: 'cadastro', component: CadastroComponent},
-  { path: 'produtos', component: ProdutosComponent}
+  { path: 'cadastro/:param', component: CadastroComponent},
+  { path: 'produtos', component: ProdutosComponent},
+  { path: '', redirectTo: 'produtos', pathMatch: 'full'}
 ];
 
 @NgModule({
