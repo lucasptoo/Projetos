@@ -17,17 +17,23 @@
     <tbody>
       <tr *ngFor="let data of basicTable.data">
         <td>{{data.nomeItem}}</td>
-        <td>{{data.unidadeDeMedida}}</td>
-        <td>{{data.quantidade}}</td>
-        <td>{{data.preco}}</td>
+        <td>{{data.unidadeMedida}}</td>
+        <td>
+          {{
+          data.unidadeMedida === 'QUILOGRAMA' ? data.quantidade + ' kg' : '' ||
+          data.unidadeMedida === 'UNIDADE' ? data.quantidade + ' un' : '' ||
+          data.unidadeMedida === 'LITRO' ? data.quantidade + ' lt' : ''
+          }}
+        </td>
+        <td>{{'R$ '+data.preco}}</td>
         <td>{{data.produtoPerecivel === 'true' ? 'Sim' : 'Não'}}</td>
-        <td>{{formatDate(data.dataDeValidade)}}</td>
-        <td>{{formatDate(data.dataDeFabricacao)}}</td>
-        <td>{{getVencido(data) ? 'Sim' : 'Não'}}</td>
+        <td>{{formatDate(data.dataValidade)}}</td>
+        <td>{{formatDate(data.dataFabricacao)}}</td>
+        <td>{{getExpiredProduct(data) ? 'Sim' : 'Não'}}</td>
         <td>
           <a (click)="onEdit(data)">Alterar</a>
           <nz-divider nzType="vertical"></nz-divider>
-          <a (click)="onDelete(data)">Deletar</a>
+          <a (click)=showDeleteConfirm(data)>Deletar</a>
         </td>
       </tr>
     </tbody>

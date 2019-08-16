@@ -2,12 +2,12 @@ import { UnidadeMedida } from '../enum/unidade-medida.enum';
 
 export class CadastroModel {
     public nomeItem: string;
-    public unidadeDeMedida: UnidadeMedida;
+    public unidadeMedida: UnidadeMedida;
     public quantidade: number;
     public preco: number;
-    public produtoPerecivel: boolean; 
-    public dataDeValidade: Date;
-    public dataDeFabricacao: Date;
+    public produtoPerecivel: boolean;
+    public dataValidade: Date;
+    public dataFabricacao: Date;
 
     public static toModel(json) {
         const model = new CadastroModel();

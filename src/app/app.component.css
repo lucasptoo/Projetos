@@ -8,7 +8,7 @@
 .app-layout {
   height: 100vh;
 }
-  
+
 .header-trigger {
   height: 64px;
   padding: 20px 24px;
@@ -78,7 +78,7 @@ nz-content {
     font-family: Avenir,Helvetica Neue,Arial,Helvetica,sans-serif;
     vertical-align: middle;
 }
-  
+
 /* aqui */
 .menu-sidebar {
   position: relative;

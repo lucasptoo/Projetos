@@ -8,4 +8,4 @@ export class CadastrosModel {
         Object.assign(model, json);
         return model;
     }
-} 
+}

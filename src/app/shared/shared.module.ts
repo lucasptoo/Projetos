@@ -4,6 +4,7 @@ import { NgZorroAntdModule} from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 import { IconsProviderModule } from './../icons-provider.module';
 
@@ -15,7 +16,8 @@ import { IconsProviderModule } from './../icons-provider.module';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzModalModule
   ],
   exports: [
     CommonModule,
@@ -24,7 +26,7 @@ import { IconsProviderModule } from './../icons-provider.module';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }
