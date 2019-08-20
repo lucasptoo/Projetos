@@ -61,4 +61,8 @@ export class ProdutosComponent implements OnInit {
   public onEdit(cadastro: CadastroModel) {
     this.router.navigate(['/cadastro', JSON.stringify(cadastro)]);
   }
+
+  public novoCadastro() {
+    this.router.navigate(['/cadastro', 'new']);
+  }
 }

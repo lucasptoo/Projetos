@@ -7,16 +7,16 @@
             [nzTrigger]="null">
     <div class="sidebar-logo">
       <a href="" target="_blank">
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <img src="https://media.licdn.com/dms/image/C4E0BAQFlbJMLQgUBbQ/company-logo_200_200/0?e=2159024400&v=beta&t=ZCW1aeEdZz35TeUsgEkSMv5P1y0xQC7Os9a3zJI_NgY" alt="logo">
         <h1>Desafio Front-end</h1>
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li [routerLink]="['/cadastro', 'new']" nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Cadastro' : ''">
-        <i nz-icon nzType="diff" nzTheme="outline"></i> 
+      <li [routerLink]="['/cadastro', 'new']" nz-menu-item nz-tooltip [nzTitle]="isCollapsed ? 'Cadastro' : ''">
+        <i nz-icon nzType="diff" nzTheme="outline"></i>
         <span>Cadastro</span>
       </li>
-      <li routerLink="/produtos" nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Produtos' : ''">
+      <li routerLink="/produtos" nz-menu-item nz-tooltip [nzTitle]="isCollapsed ? 'Produtos' : ''">
         <i nz-icon nzType="unordered-list" nzTheme="outline"></i>
         <span>Produtos</span>
       </li>

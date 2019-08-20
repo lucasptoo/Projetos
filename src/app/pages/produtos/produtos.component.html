@@ -1,22 +1,23 @@
 <h1>Lista de produtos</h1>
-
-<nz-table #basicTable [nzData]="data">
+<div>
+<nz-table #basicTable [nzData]="data" [nzShowPagination]="false" [nzScroll]="{ x: '1550px' }">
     <thead>
       <tr>
-        <th>Nome do item</th>
-        <th>Unidade de medida</th>
-        <th>Quantidade</th>
-        <th>Preço</th>
-        <th>Produto perecivel</th>
-        <th>Data de validade</th>
-        <th>Data de fabricaçao</th>
-        <th>Vencido</th>
-        <th>Açoes</th>
+        <th nzWidth="100px" nzLeft="0px">Nome do item</th>
+        <th nzWidth="100px">Unidade de medida</th>
+        <th nzWidth="100px">Quantidade</th>
+        <th nzWidth="100px">Preço</th>
+        <th nzWidth="100px">Produto perecivel</th>
+        <th nzWidth="100px">Data de validade</th>
+        <th nzWidth="100px">Data de fabricaçao</th>
+        <th nzWidth="100px">Vencido</th>
+        <th nzWidth="100px" nzRight="0px">Açoes</th>
       </tr>
     </thead>
+
     <tbody>
       <tr *ngFor="let data of basicTable.data">
-        <td>{{data.nomeItem}}</td>
+        <td nzLeft="0px">{{data.nomeItem}}</td>
         <td>{{data.unidadeMedida}}</td>
         <td>
           {{
@@ -30,11 +31,14 @@
         <td>{{formatDate(data.dataValidade)}}</td>
         <td>{{formatDate(data.dataFabricacao)}}</td>
         <td>{{getExpiredProduct(data) ? 'Sim' : 'Não'}}</td>
-        <td>
+        <td nzRight="0px">
           <a (click)="onEdit(data)">Alterar</a>
           <nz-divider nzType="vertical"></nz-divider>
           <a (click)=showDeleteConfirm(data)>Deletar</a>
         </td>
       </tr>
     </tbody>
-  </nz-table>
+</nz-table>
+
+<button nz-button nzType="primary" style="margin-top: 20px;" (click)="novoCadastro()">Novo Produto</button>
+
