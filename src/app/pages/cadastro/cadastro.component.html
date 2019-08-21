@@ -100,7 +100,7 @@
                         <nz-date-picker formControlName="dataFabricacao" [nzFormat]="dateFormat" style="width: 100%;"></nz-date-picker>
                 </nz-form-control>
                     <div *ngIf="submitted && f.dataFabricacao.errors">
-                        <div *ngIf="f.dataFabricacao.errors.required" class="mensagem">Campo obrigatório!</div>
+                        <div *ngIf="f.dataFabricacao.errors.required" class="mensagem">{{ mensagemInvalid }}</div>
                     </div>
             </nz-form-item>
         </div>

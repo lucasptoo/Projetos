@@ -1,4 +1,3 @@
-import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { UnidadeMedida } from './../../shared/enum/unidade-medida.enum';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -6,6 +5,7 @@ import { FormService } from 'src/app/core/services/form/form.service';
 import { CadastroModel } from 'src/app/shared/models/cadastro';
 import { MessageService } from 'src/app/core/services/message/message.service';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-cadastro',
@@ -18,17 +18,16 @@ export class CadastroComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private formService: FormService,
-    private localStorage: LocalStorageService,
     private messageService: MessageService
   ) { }
 
   get f() {return this.cadastroForm.controls; }
 
+  public mensagemInvalid = 'Campo obrigatório!';
   public cadastroForm: FormGroup;
   public submitted = false;
   public dateFormat = 'dd/MM/yyyy';
   public oldRegister: any;
-  public data: CadastroModel[];
   public stepUnidade = 1;
   public unidadeMedida = Object.keys(UnidadeMedida).map(key => {
     return { label: UnidadeMedida[key], value: key};
@@ -36,7 +35,6 @@ export class CadastroComponent implements OnInit {
 
   public formatterUnidade = () => {};
   public parserUnidade = () => {};
-
   public formatterReal = (value = 0) => `R$ ${value}`;
   public parserReal = (value = '0') => value.replace('R$ ', '');
 
@@ -45,6 +43,7 @@ export class CadastroComponent implements OnInit {
     this.getCadastroModel();
   }
 
+  // Método criando o formgroup.
   private createForm() {
     this.cadastroForm = this.formBuilder.group({
       nomeItem: [{value: undefined, disabled: false}, Validators.compose([Validators.required, Validators.maxLength(50)])],
@@ -58,9 +57,10 @@ export class CadastroComponent implements OnInit {
 
     this.changeValueUnidadeMedida();
     this.checkPerishableField();
-
+    this.checkDate();
   }
 
+  // Método para verificar se o produto é perecível, se for, habilitar data de validade.
   private checkPerishableField() {
     this.cadastroForm.get('produtoPerecivel').valueChanges.subscribe(perecivel => {
       if (perecivel === 'true') {
@@ -71,6 +71,18 @@ export class CadastroComponent implements OnInit {
     });
   }
 
+  // Método para validar se a data de fabricação é superior a data de validade.
+  private checkDate() {
+    const dataFabricacao = moment(this.cadastroForm.controls['dataFabricacao'].value).format('DD/MM/YYYY') + ' Data de Fabricação';
+    const dataValidade = moment(this.cadastroForm.controls['dataValidade'].value).format('DD/MM/YYYY') + ' Data de Validade';
+
+    if (dataFabricacao > dataValidade) {
+      this.cadastroForm.get('dataFabricacao').reset({value: undefined, disabled: false}, Validators.required);
+      this.mensagemInvalid = 'Data superior que a de validade.';
+    }
+  }
+
+  // Método para alterar o valor do campo quantidade.
   private changeValueUnidadeMedida() {
     this.cadastroForm.get('unidadeMedida').valueChanges.subscribe(unidade => {
       this.cadastroForm.get('quantidade').reset({value: undefined, disabled: false});
@@ -90,6 +102,7 @@ export class CadastroComponent implements OnInit {
     });
   }
 
+  // Método para capturar o objeto da url e setar nos campos de cadastro.
   private getCadastroModel() {
     const url = this.router.url.split('/');
     const params = decodeURI(url[2]);
@@ -97,20 +110,18 @@ export class CadastroComponent implements OnInit {
       const model = CadastroModel.toModel(JSON.parse(params));
       this.cadastroForm.patchValue(model);
       this.oldRegister = model;
-
-      this.data = this.localStorage.get('cadastros');
-
     }
   }
 
   changeValueProduct(oldRegister) {
-
     this.formService.deleteCadastro(oldRegister);
   }
 
 
+  // Método do botao "Salvar" para salvar um produto novo ou salvar uma alteração de um produto.
   onSubmit() {
     this.submitted = true;
+    this.checkDate();
     if (this.cadastroForm.invalid) {
       return;
     }
@@ -131,6 +142,7 @@ export class CadastroComponent implements OnInit {
 
   }
 
+  // Método do botao "Cancelar".
   onCancel() {
     this.submitted = false;
     this.cadastroForm.reset();

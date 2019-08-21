@@ -8,8 +8,8 @@
         <th nzWidth="100px">Quantidade</th>
         <th nzWidth="100px">Preço</th>
         <th nzWidth="100px">Produto perecivel</th>
+        <th nzWidth="100px">Data de fabricação</th>
         <th nzWidth="100px">Data de validade</th>
-        <th nzWidth="100px">Data de fabricaçao</th>
         <th nzWidth="100px">Vencido</th>
         <th nzWidth="100px" nzRight="0px">Açoes</th>
       </tr>
@@ -28,8 +28,8 @@
         </td>
         <td>{{'R$ '+data.preco}}</td>
         <td>{{data.produtoPerecivel === 'true' ? 'Sim' : 'Não'}}</td>
-        <td>{{formatDate(data.dataValidade)}}</td>
         <td>{{formatDate(data.dataFabricacao)}}</td>
+        <td>{{formatDate(data.dataValidade)}}</td>
         <td>{{getExpiredProduct(data) ? 'Sim' : 'Não'}}</td>
         <td nzRight="0px">
           <a (click)="onEdit(data)">Alterar</a>
@@ -40,5 +40,5 @@
     </tbody>
 </nz-table>
 
-<button nz-button nzType="primary" style="margin-top: 20px;" (click)="novoCadastro()">Novo Produto</button>
+<button nz-button nzType="primary" style="margin-top: 20px;" (click)="novoCadastro()">Novo produto</button>
 
